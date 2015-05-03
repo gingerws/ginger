@@ -1,0 +1,3 @@
+a2dissite ginger
+
+service apache2 reload

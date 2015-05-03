@@ -1,0 +1,619 @@
+/*
+Copyright (C) 2010-2013, Josef Hahn and friend
+
+This file is part of Ginger.
+
+Ginger is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Ginger is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Ginger.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 300;
+src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(fonts/toadOcfmlt9b38dHJxOBGIPZSf8Ud0kNoe3bGnF7K24.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 400;
+src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(fonts/ODelI1aHBYDBqgeIAH2zlBBHWFfxJXS04xYOz0jw624.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 600;
+src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url(fonts/toadOcfmlt9b38dHJxOBGAAD_zxmsR6vL1X3tnvCZYo.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: normal;
+font-weight: 700;
+src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(fonts/toadOcfmlt9b38dHJxOBGAE-U1AYRUXXE0Dth8uKIE0.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: italic;
+font-weight: 300;
+src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightIt'), url(fonts/fpTVHK8qsXbIeTHTrnQH6HOOzCfWADO619gxuli7ZzU.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: italic;
+font-weight: 400;
+src: local('Source Sans Pro Italic'), local('SourceSansPro-It'), url(fonts/M2Jd71oPJhLKp0zdtTvoM1xDqsnd7zNt-b9r25av6rY.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: italic;
+font-weight: 600;
+src: local('Source Sans Pro Semibold Italic'), local('SourceSansPro-SemiboldIt'), url(fonts/fpTVHK8qsXbIeTHTrnQH6DugCgqSmF8aQZaqvLxtKh4.woff) format('woff');
+}
+@font-face {
+font-family: 'Source Sans Pro';
+font-style: italic;
+font-weight: 700;
+src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(fonts/fpTVHK8qsXbIeTHTrnQH6L7TcrrtjxQtUk4wnkGIFYE.woff) format('woff');
+}
+
+
+body{
+    font-family:        'Source Sans Pro', sans-serif;
+    padding:			0px;
+    margin:				0px;
+    color:				#444;
+    font-size:		    1.2em;
+}
+
+h1,h2,h3,h4,h5 {
+    margin:				10px 0px 0px 0px;
+    padding:			0px;
+    font-weight:        lighter;
+}
+
+h1,h2 {
+    margin:				10px 0px 10px 0px;
+}
+
+h1 {
+    font-size:			1.8em;
+}
+h2 {
+    font-size:			1.6em;
+}
+h3 {
+    font-size:			1.4em;
+}
+h4 {
+    font-size:			1.3em;
+}
+h5 {
+    font-size:			1.2em;
+}
+
+input, select, button, #cloudpanel .currentfilterpanel a, div.modaldialog a {
+    background:         #999;
+    border:             0;
+    color:              #def;
+    border-radius:      0;
+    text-decoration:    none;
+    padding:            3pt;
+    margin:             3pt;
+}
+
+
+input:hover, button:hover, #cloudpanel .currentfilterpanel a:hover, div.modaldialog a:hover {
+    background:         #ccc;
+    color:              #333;
+}
+
+#cloudpanel .currentfilterpanel a, #cloudpanel .currentfilterpanel button {
+    visibility:         hidden;
+    padding:            2pt;
+    margin-left:        5pt;
+}
+
+/* this hover class is toggled when the mouse is within the filter panel or in mobile mobile */
+#cloudpanel .currentfilterpanel.hover a, #cloudpanel .currentfilterpanel.hover button {
+    visibility:         inherit;
+}
+
+input[type=text], select, textarea {
+    background:         #eee;
+    border:             2pt solid #999;
+    color:              #222;
+}
+
+div.loadinganimation {
+    position:           fixed;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    right:              0;
+    background:         rgba(255,255,255,0.0);
+}
+
+div.visibleloadinganimation {
+    position:           fixed;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    right:              0;
+    background:         rgba(160,200,240,0.5);
+}
+
+div.modaldialog {
+    position:           absolute;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    right:              0;
+    background:         #9ce;
+    overflow:           auto;
+    padding:            20pt;
+}
+
+a:focus { 
+    outline:none; 
+}
+
+#messagelist [name=summary] a {
+    color: 				#44a;
+    text-decoration:    none;
+}
+
+#messagelist [name=summary] a:hover {
+    color:              #44d;
+}
+
+.modaldialogpart {
+    text-align:         center;
+    padding:            10pt;
+
+}
+
+.currentfilterpanel {
+    position:           absolute;
+    left:               0;
+    right:              0;
+    bottom:             0;
+    padding:            10pt;
+}
+
+.currentfilterpanel .globalactions {
+    position:           absolute;
+    right:              0;
+    top:                0;
+    padding:            24pt;
+}
+
+.currentfilterpanel_filter {
+    font-weight:        100;
+}
+
+div.tags {
+    font-size:          0.8em;
+    color:				#668;
+    padding-right:		4pt;
+    padding-left:		4pt;
+    padding-top:        2pt;
+    padding-bottom:     2pt;
+    display:            none;
+}
+
+div.tags a  {
+    color:				#668;
+    text-decoration:	none;
+    padding-right:		2pt;
+    padding-left:		2pt;
+    margin-right:       3pt;
+    margin-left:        3pt;
+    background:         none;
+    border:             1.4pt solid #668;
+    border-radius:      5pt;
+    cursor:             pointer;
+}
+
+div.tags a:hover {
+    color:				#6ae;
+    border:             1.4pt solid #6ae;
+}
+
+div.settings_loading {
+    color:              #444;
+    font-size:          1.1em;
+    margin-left:        10pt;
+    font-weight:        100;
+}
+
+#cloudpanel div.tags a  {
+    color:				#bbb;
+    text-decoration:	none;
+    padding-right:		2pt;
+    padding-left:		2pt;
+    margin-right:       3pt;
+    margin-left:        3pt;
+    background:         none;
+    border:             2pt solid #bbb;
+    border-radius:      5pt;
+    display:            block;
+    float:              left;
+    margin-bottom:      10pt;
+    cursor:             pointer;
+}
+
+span.selectedtag  {
+    color:				#ccc;
+    text-decoration:	none;
+    padding-right:		2pt;
+    padding-left:		2pt;
+    margin-right:       3pt;
+    margin-left:        3pt;
+    background:         none;
+    border:             2pt solid #ccc;
+    border-radius:      4pt;
+    margin-bottom:      10pt;
+    cursor:             pointer;
+}
+
+div.modaldialog a.importantbutton, div.modaldialog button.importantbutton  {
+    font-size:          1.2em;
+    padding-left:       7pt;
+    padding-right:      7pt;
+}
+
+div.tags a.activated  {
+    background:         #8af;
+}
+
+
+#cloudpanel div.tags a:hover {
+    color:				#ddd;
+    border:             2pt solid #ddd;
+}
+
+a.menulink  {
+    color:				#7be;
+    text-decoration:	none; 
+    padding-right:		16px;
+}
+
+.superusermenulink  {
+    display:            none;
+}
+
+a.menulink:hover  {
+    color:				#9df;
+    text-decoration:	none;
+    padding-right:		16px;
+}
+
+.menupanel {
+    font-size:			1.6em;
+    overflow:			hidden;
+}
+
+#mainpart {
+    position: 			absolute;
+    z-index:            10000;
+    top:				0;
+    right:				0;
+    left:				0;
+    bottom:				0;
+}
+
+#menupanel .lightfont {
+    font-weight:        100;
+}
+
+#menupanel {
+    color:				#eee;
+    background: 		#666;
+    border-bottom:      2pt solid #888;
+    padding:			2pt;
+    position: 			absolute;
+    z-index:            10000;
+    top:				0;
+    right:				0;
+    left:				0;
+    word-wrap:          break-word;
+}
+
+#menupanel_rightpart {
+    position:           absolute;
+    top:                2pt;
+    right:              2pt;
+}
+
+#cloudpanel {
+    background:         #666;
+    color:				#eee;
+    position:           absolute;
+    top:                0;
+    bottom:             0;
+    right:              50%;
+    left:               0;
+    padding:14pt;
+}
+
+#feedadmin{
+    z-index:            20000;
+    position:			absolute;
+    top:				0;
+    left:				0;
+    overflow:			auto;
+    bottom:				0;
+    right:				0;
+    background: 		#eef;
+    visibility:         hidden;
+}
+
+#messagepart{
+    position:			absolute;
+    top:				0;
+    left:				50%;
+    bottom:				0;
+    right:				0;
+    background: 		#fff;
+}
+
+#messagelist{
+    position:			absolute;
+    overflow:           auto;
+    top:				0;
+    left:				0;
+    bottom:				0;
+    right:				0;
+}
+
+#messagepanel{
+    position:           absolute;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    right:              0;
+    z-index:            100;
+}
+
+#messagelist .entryfavorite, #messagelist .entrydefault {
+    cursor: 			pointer;
+    font-size: 			1em;
+    margin: 			6pt;
+    position:           relative;
+    overflow:           hidden;
+}
+
+#messagelist .entrydefault {
+    background: 		#eee;
+    border: 		    1px solid #eee;
+}
+
+#messagelist .seen {
+    background: 		#fcfcfc;
+    border: 		    1px solid #fcfcfc;
+}
+
+#messagelist .entryfavorite {
+    background: 		#edffed;
+    border:		    	1px solid #edffed;
+}
+
+#messagelist .marked {
+    border:		    	1px solid #aaf;
+}
+
+#messagelist [name=title] {
+    text-decoration:	none;
+    font-variant:       small-caps;
+}
+
+#messagelist .seen [name=title] {
+    color: 				#aaa;
+}
+
+#messagelist .unseen [name=title] {
+    color: 				#333;
+}
+
+#messagelist .entryfavorite [name=title] {
+    color: 				#363;
+}
+
+#messagelist .marked [name=title] {
+    color:              #55d;
+}
+
+#messagelist [name=summary] {
+    margin:				6pt;
+    padding:			2px;
+    color: 				#444;
+    font-size: 			0.8em;
+    cursor: 			text;
+    line-height:		120%;
+    border-radius:		2px;
+}
+
+#messagelist .entryfooter {
+    display:            none;
+}
+
+#messagelist .expanded .entryfooter {
+    display:            block;
+    padding:            3pt;
+    font-size:          0.8em;
+    color:              #668;
+    float:              right;
+}
+
+.entrycontrolpanel {
+    position: 			relative;
+    top: 				0px;
+    right: 				0px;
+    padding-left: 		6px;
+    padding-right:		6px;
+    border: 			0px;
+    border-radius: 		2px;
+}
+
+.entryfavorite .entrycontrolpanel {
+    background-color: 	rgba(255,255,255,0.9);
+}
+
+.entrydefault .entrycontrolpanel {
+    background-color: 	rgba(255,255,255,0.9);
+}
+
+.entryfavorite .mobileentrycontrolpanel {
+    background-color: 	rgba(255,255,255,0.7);
+}
+
+.entrydefault .mobileentrycontrolpanel {
+    background-color: 	rgba(255,255,255,0.7);
+}
+
+.mobileentrycontrolpanel {
+    position: 			relative;
+    top: 				0px;
+    right: 				0px;
+    opacity:			0.4;
+    border: 			0px;
+    border-radius: 		3px;
+    padding: 			0px 0px 0px 0px;
+    font-weight:		bold;
+    font-size:			1.2em;
+}
+
+.mobileentrycontrolpanel .enhancedlink {
+    visibility:         collapse;
+    position:           absolute;
+    width:              0;
+}
+
+.marked .mobileentrycontrolpanel .enhancedlink {
+    visibility:         visible;
+    width:              auto;
+    position:           relative;
+}
+
+div.modaldialog a.expander {
+    font-weight:        lighter;
+    font-size:          1.3em;
+    text-decoration:    none;
+    color:              #333;
+    background:         none;
+}
+
+div.modaldialog a.expander:hover {
+    font-weight:        lighter;
+    font-size:          1.3em;
+    text-decoration:    none;
+    color:              #000;
+    background:         none;
+}
+
+.entrycontrolpanel > a {
+    text-decoration:	none;
+    color: 		    	#333;
+}
+
+.entrycontrolpanel > a.hovered {
+    color: 		    	#000;
+}
+
+.mobileentrycontrolpanel > a {
+    text-decoration:    none; 
+    color:              #44f;
+}
+
+.marked .mobileentrycontrolpanel > a {
+    text-decoration:    none; 
+    color:              #333;
+}
+
+.box {
+    border-width:		0;
+    padding:			5px 10px 0px 10px;
+}
+
+.boxupad {
+    font-size:			0px;
+    padding:			0px 0px 20px 0px;
+    margin:				0px 0px 15px 0px;
+}
+
+.box h1,.box h2,.box h3,.box h4,.box h5 {
+    margin:				0px 0px 10px 0px;
+}
+
+.textblock {
+    padding:			0px 10px 0px 10px;
+}
+
+table {
+    border-collapse:	collapse;
+    margin:			    10px;
+}
+
+#feedadmin_myfeeds_table td {
+    padding-right:       15pt;
+}
+
+.box th {
+    font-weight:        lighter;
+    font-size:          1.1em;
+}
+
+.box td,.box th {
+    color:              #777;
+    border-width:		1px 0px 0px 0px;
+    border-color:		#777;
+    border-style:		solid;
+    border-collapse:	collapse;
+}
+
+.box  .headrow td,.box  .headrow th{
+    border-width:		0px 0px 0px 0px;
+}
+
+.box a {
+    text-decoration:	none;
+    color: 				#44e;
+}
+
+li {
+    padding:			0px 0px 10px 0px;
+}
+
+input, select, button {
+    font-weight:        lighter;
+}
+
+.msgloadinglabel {
+    padding:            80px; 
+    font-weight:        100; 
+    font-size:          1.6em;
+}
+
+#cloudpanel .currentfilterpanel div.currentview {
+    line-height:        1.7em;
+}
+
+textarea.scriptingarea {
+    width:              100%;
+    height:             200px;   
+    resize:             vertical;
+}
+
+.globalactions {
+    margin-top:         -1.4em;
+}

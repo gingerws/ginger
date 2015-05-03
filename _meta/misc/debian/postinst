@@ -1,0 +1,8 @@
+/usr/lib/ginger/init.py /var/lib/ginger /usr/lib/ginger
+
+chown www-data:www-data /var/lib/ginger /var/lib/ginger/ginger-db
+
+a2enmod wsgi
+a2ensite ginger
+
+service apache2 reload

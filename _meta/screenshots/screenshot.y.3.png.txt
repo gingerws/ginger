@@ -1,0 +1,1 @@
+0.9: messages always open in a new tab

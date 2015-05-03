@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+Copyright (C) 2010-2013, Josef Hahn and friend
+
+This file is part of Ginger.
+
+Ginger is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Ginger is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Ginger.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<html>
+	<head>
+		<title>Ginger RSS Reader</title> 
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" > 
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="{{ subsite }}static/main.css">
+		<style type="text/css">
+			body{
+				padding:			0px;
+				margin:				0px;
+			}
+			#menusplitter
+			{
+				color:				#999999;
+			}
+			.menulink
+			{
+				cursor:				pointer;
+			}
+            {% if user.is_superuser %}
+            .superusermenulink  {
+                display:            inline;
+            }
+            {% endif %}
+		</style>
+	</head>
+	<body>
+
+        <script type="text/javascript" src="{{ subsite }}static/jquery.js" ></script>
+
+        <div id="menupanel"></div>
+
+        <div id="mainpart">
+
+            <div id="messagepart">
+
+                <div id="messagelist"></div>
+
+                <div id="messagepanel"></div>
+
+            </div>
+
+            <div id="cloudpanel"></div>
+
+        </div>
+        
+        <script type="text/javascript">
+            var viewmode="{{ viewmode }}";
+            var username="{{ user.username }}";
+            var defaultfilter=[{{ defaultfilter|safe }}];
+            defaultfilter = defaultfilter.length ? defaultfilter[0] : undefined;
+            var listdirection={{ listdirection }};
+            var subsite="{{ subsite }}";
+            var powermode= "{{ powermode }}" == "1";
+        </script>
+
+        <script type="text/javascript" src="{{ subsite }}static/messagefilters.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/help.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/mobile.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/commondialogs.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/commoncontrols.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/taggingdialog.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/settingsdialog.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/loading.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/index.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/menupanel.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/messagelist.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/messagepanel.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/cloudpanel.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/filterpanel.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/feedadmin.js" ></script>
+        <script type="text/javascript" src="{{ subsite }}static/settings.js" ></script>
+
+	</body>
+</html>
+
