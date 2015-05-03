@@ -1,6 +1,8 @@
 # ginger
 a web based rss news reader
 
+Read README.pdf!
+
 Ginger is a news reader for rss news feeds. Once it is hosted in
 a web server, a user can login and read her news in the web browser.
 
