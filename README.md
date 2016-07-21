@@ -1,7 +1,7 @@
 # ginger
 a web based rss news reader
 
-Read README.pdf!
+Dear Friend, this isn't a github project anymore. Please visit the project homepage: https://pseudopolis.eu/wiki/pino/projs/ginger/
 
 Ginger is a news reader for rss news feeds. Once it is hosted in
 a web server, a user can login and read her news in the web browser.
